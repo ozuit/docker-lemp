@@ -1,5 +1,6 @@
 web:
     image: nginx:latest
+    container_name: web
     ports:
         - "80:80"
         - "443:443"
@@ -12,6 +13,7 @@ web:
         
 php:
     image: phillaf/php-mysql
+    container_name: php
     ports:
         - "9080:9000"
     volumes:
@@ -23,6 +25,7 @@ php:
 
 mysql:
     image: mysql:5.7
+    container_name: mysql
     volumes:
         - db_data:/var/lib/mysql
     ports:
@@ -32,5 +35,6 @@ mysql:
 
 redis:
     image: redis:latest
+    container_name: redis
     ports:
         - "6379:6379"
