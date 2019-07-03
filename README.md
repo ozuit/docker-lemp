@@ -76,6 +76,11 @@ Removing docker_mysql_1 ... done
 ```
 
 ### Tips
+Build new Docker image
+```sh
+docker build -t php7.3 .
+```
+
 Connect to Docker container
 ```sh
 $ docker exec -i -t 665b4a1e17b6 /bin/bash #by ID
