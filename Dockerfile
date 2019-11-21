@@ -38,3 +38,11 @@ RUN buildDeps=" \
 RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
     && ln -s $(composer config --global home) /root/composer
 ENV PATH=$PATH:/root/composer/vendor/bin COMPOSER_ALLOW_SUPERUSER=1
+
+# Node.js
+RUN curl -sL https://deb.nodesource.com/setup_10.x -o nodesource_setup.sh
+RUN bash nodesource_setup.sh
+RUN apt-get install nodejs -y
+RUN npm install npm@6.9.0 -g
+RUN command -v node
+RUN command -v npm
