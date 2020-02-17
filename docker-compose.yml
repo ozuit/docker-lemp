@@ -20,6 +20,18 @@ services:
         networks:
             - lempnet
         command: "npx pm2 start ecosystem.config.js --no-daemon"
+
+    # apache:
+    #     image: httpd:latest
+    #     container_name: apache
+    #     ports:
+    #         - "80:80"
+    #         - "443:443"
+    #     volumes:
+    #         - ./www/:/var/www/html/
+    #         - ./config/apache/default.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
+    #     networks:
+    #         - lempnet
         
     web:
         image: nginx:latest
