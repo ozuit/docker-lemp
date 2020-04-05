@@ -8,18 +8,18 @@ volumes:
         external: true
 
 services:
-    sass-server:
-        image: node:10
-        container_name: sass-server
-        user: node
-        working_dir: "/sass-server"
-        ports:
-            - "3003:3003"
-        volumes:
-            - ./:/sass-server
-        networks:
-            - lempnet
-        command: "npx pm2 start ecosystem.config.js --no-daemon"
+    # sass-server:
+    #     image: node:10
+    #     container_name: sass-server
+    #     user: node
+    #     working_dir: "/sass-server"
+    #     ports:
+    #         - "3003:3003"
+    #     volumes:
+    #         - ./:/sass-server
+    #     networks:
+    #         - lempnet
+    #     command: "npx pm2 start ecosystem.config.js --no-daemon"
 
     # apache:
     #     image: httpd:latest
@@ -32,6 +32,20 @@ services:
     #         - ./config/apache/default.conf:/usr/local/apache2/conf/extra/httpd-vhosts.conf
     #     networks:
     #         - lempnet
+
+    mqtt:
+        container_name: mqtt
+        image: eclipse-mosquitto
+        restart: always
+        volumes:
+            - ./config/mosquitto/config:/mosquitto/config
+            - ./config/mosquitto/data:/mosquitto/data
+            - ./config/mosquitto/log:/mosquitto/log
+        ports:
+            - 1883:1883
+            - 9001:9001
+        networks:
+            - lempnet
         
     web:
         image: nginx:latest
