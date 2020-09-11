@@ -33,20 +33,20 @@ services:
     #     networks:
     #         - lempnet
 
-    mqtt:
-        container_name: mqtt
-        image: eclipse-mosquitto
-        restart: always
-        volumes:
-            - ./config/mosquitto/config:/mosquitto/config
-            - ./config/mosquitto/data:/mosquitto/data
-            - ./config/mosquitto/log:/mosquitto/log
-        ports:
-            - 1883:1883
-            - 9001:9001
-        networks:
-            - lempnet
-        
+    # mqtt:
+    #     container_name: mqtt
+    #     image: eclipse-mosquitto
+    #     restart: always
+    #     volumes:
+    #         - ./config/mosquitto/config:/mosquitto/config
+    #         - ./config/mosquitto/data:/mosquitto/data
+    #         - ./config/mosquitto/log:/mosquitto/log
+    #     ports:
+    #         - 1883:1883
+    #         - 9001:9001
+    #     networks:
+    #         - lempnet
+
     web:
         image: nginx:latest
         container_name: web
@@ -59,7 +59,7 @@ services:
             - ./logs/nginx:/var/log/nginx
         networks:
             - lempnet
-            
+
     php:
         image: php7.3
         container_name: php
@@ -77,7 +77,7 @@ services:
         volumes:
             - db_data:/var/lib/mysql
         ports:
-            - '3306:3306'
+            - "3306:3306"
         environment:
             MYSQL_ROOT_PASSWORD: password
         networks:
